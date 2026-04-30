@@ -1,0 +1,62 @@
+Prompt A: Nutrition Advice for Pregnant Women
+Current Version: "Give nutrition tips for pregnant women."
+
+Rewritten Prompt Using AIM and MAP:
+
+Act as a nutritionist serving Community Health Workers in Western Kenya. Your intent is to generate an iron-rich meal plan that prevents anemia using only foods available within a five-kilometer radius of a rural village. The mechanism is to reference the Kenya Food Composition Tables and exclude any vegetable that requires refrigeration, airfreight, or a supermarket supply chain.
+
+For the MAP framework, the medium is a text message limited to 160 characters written in simple Kiswahili. The audience is a semi-literate pregnant mother, eighty-five percent of whom are subsistence farmers with daily food budgets under two hundred Kenyan shillings. The purpose is to increase hemoglobin levels without pharmaceutical supplements by relying on locally grown crops. Generate three specific breakfast suggestions using only amaranth leaves, pumpkin leaves, millet, or sweet potatoes.
+
+Key Improvement: The original prompt risks hallucinating foods like kale, spinach, or avocado toast which are unavailable or unaffordable in rural Kakamega. The rewritten prompt anchors advice to actual local foods such as terere and matooke, ensuring the mother can follow the advice immediately without traveling to a distant market or spending money she does not have.
+
+Prompt B: Appointment Reminders
+Current Version: "Remind users about doctor visits."
+
+Rewritten Prompt Using AIM and MAP:
+
+Act as an automated scheduling agent integrated with mobile money and mapping services. Your intent is to reduce missed antenatal care visits by forty percent by accounting for realistic travel time from rural villages to clinics. The mechanism is to fetch stagecoach schedules, walking routes, and rural clinic operating hours from public data sources.
+
+For the MAP framework, the medium is a voice note lasting no more than forty-five seconds with a USSD text fallback for feature phone users. The audience is a rural mother who walks at an average speed of four kilometers per hour and relies on public transport that may run only once daily. The purpose is to back-calculate a "leave home by" time and verify that the clinic is actually open and has stock of required medications or vaccines.
+
+Retrieve the GPS distance from the user's registered village to the nearest health facility. Query the specific days the clinic offers antenatal services, as many rural facilities operate ANC only on Thursdays. Calculate total travel time using walk plus matatu mode. If total travel exceeds two hours, generate a reminder that says "Leave home by five in the morning." If the user has no fare balance, suggest a government transport voucher instead of simply canceling the appointment.
+
+Key Improvement: The original prompt triggers a simple notification at eight in the morning, which is useless if the mother lives five kilometers away and the only matatu leaves at six. The rewritten version uses travel time reasoning to prevent the user from arriving after the clinic closes or missing transport entirely.
+
+Prompt C: Emergency Triage During Pregnancy
+Current Version: "Tell me what to do if I feel unwell during pregnancy."
+
+Rewritten Prompt Using Chain-of-Thought and Verifier Pattern
+
+Chain-of-Thought Scaffold:
+
+Step one is symptom severity check. Determine if there is bleeding, loss of fluid, fainting, or sharp constant pain. Step two is resource check. Identify the user's distance to the nearest Level 2 health center and whether transport money is available. Step three is action differentiation. Separate cases into home care, call a Community Health Worker, or go to clinic immediately.
+
+Verifier Pattern Instructions:
+
+Before giving any advice, the AI must ask three verification questions. First, on a scale of one to five, is the pain sharp and constant or does it come and go? Second, do you have any transport money saved today, yes or no? Third, is there an active Community Health Worker in your village who owns a motorbike?
+
+The Final Safe Prompt:
+
+Do not output emergency instructions until the user answers all three verification questions. If the user reports bleeding or fainting, immediately output: Call the Kenya Maternal Hotline on 0800-721-210 now. Do not wait for transport. If the user reports mild backache with no bleeding, output: Drink warm porridge and rest. Call your assigned Community Health Worker within four hours. Never use the word "immediately" unless hemorrhage is confirmed by the verification answers.
+
+Key Improvement: The original prompt triggers fear and causes poor decisions like borrowing money for an emergency taxi that was not actually needed. The Chain-of-Thought and Verifier Pattern distinguishes between mild symptoms manageable at home and critical emergencies requiring immediate evacuation, reducing unnecessary clinic visits while ensuring real emergencies get escalated.
+
+Reflection
+This exercise fundamentally changed how I view artificial intelligence in healthcare. I used to believe that a well-trained model summarizing World Health Organization guidelines was valuable. Now I see that for a mother in Turkana County, advice to eat leafy greens is not helpful if those greens do not grow there. Precision requires the AI to know transport costs, local market inventory, and clinic operating hours. We are not building doctors. We are building navigators for scarcity. The AI must first verify reality by asking questions, then speak with humility about what is actually possible given the user's resources and location. Without these frameworks, even accurate medical information becomes dangerous noise.
+
+Quiz: Reason Beyond the Thicket
+Question One: AfyaTech Failure in Kakamega County
+
+The failure occurred because the artificial intelligence used a global database as its medium instead of a local vendor survey as its audience anchor. It prioritized scientific nutrition over availability. To redesign the prompt using the MAP framework: generate a meal plan where one hundred percent of ingredients are for sale at Kakamega's Monday market and exclude anything requiring a refrigerator or imported packaging.
+
+Question Two: Verifier Pattern for Abdominal Pain
+
+Before the AI says "visit your doctor immediately," it must ask three clarifying questions. First, do you have five hundred Kenyan shillings for transport, yes or no? Second, is the pain located above your belly button or below it? Third, can you walk ten minutes without fainting? Only after these answers, the AI chooses one of three outputs: home care instructions, contact your Community Health Worker within twenty-four hours, or go to the clinic now.
+
+Question Three: Chain-of-Thought Versus Direct WHO Summarization
+
+Direct World Health Organization summarization kills value in rural East Africa because global guidelines assume paved roads, functioning laboratories, and salaried nurses. A guideline that says "perform C-section within thirty minutes" is impossible when the nearest surgical theater is seventy kilometers away over unpaved roads. Chain-of-Thought adapts this by translating the guideline into local action: flag the emergency, calculate that transport takes six hours, and dispatch a Community Health Worker motorbike to meet the ambulance halfway. Adaptation creates value. Verbatim repetition creates failure.
+
+Question Four: OCEAN Framework Catching Outdated Data
+
+The OCEAN framework catches the error through its Observation and Corroboration layers. The Observation layer cross-references the publication date of the statistic, flagging anything older than two years. The Corroboration layer queries the Kenya Health Workforce Report for the current year before sending any figure to donors. OCEAN forces the artificial intelligence to express uncertainty about old data and output a warning: this figure likely dropped during recent health workforce changes. Verify with the Kenya National Bureau of Statistics before sharing.
